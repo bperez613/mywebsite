@@ -7,13 +7,25 @@
   
   <script language="javascript" src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/addons/p5.sound.min.js"></script>
   <script language="javascript" type="text/javascript" src="sketch.js"></script>
-</head>
-body {
-  background-color: pink;
-}
-</style>
-</head>
-<body>
+var song;
+var sliderRate;
+var sliderPan;
 
-<h1 style="color:red;">this is our sound page.</h1>
+function setup() {
+  createCanvas(200, 200);
+  song = loadSound('acid dreams.mp3', loaded);
+  song.setVolume(0.5);
+  sliderRate = createSlider(0, 1.5, 1, 0.01);
+  sliderPan = createSlider(-1, 1, 0, 0.01);
+}
+
+function loaded() {
+  song.play();
+}
+
+function draw() {
+  background(random(255));
+  song.pan(sliderPan.value());
+  song.rate(sliderRate.value());
+}
 
